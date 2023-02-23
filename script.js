@@ -1,14 +1,18 @@
 // testar altura
 function heightTest(gender, height) {
-    if (((gender == "male") && (height >= 1.70)) || // Teste masculino
-    ((gender == "female") && (height >= 1.60))) { // Teste feminino
+    if ((gender == "male") && (height >= 1.70)) { // Teste Masculino
+        return true
+    }
+    if ((gender == "female") && (height >= 1.60)) { // Teste feminino
         return true
     }
 }
 // teste barra
 function barTest(gender, barReps, barSeconds) {
-    if (((gender == "male") && (barReps >= 6 || barSeconds <= 15)) || //Teste masculino
-    ((gender == "female") && (barReps >= 5 || barSeconds <= 12))) { //Teste feminino
+    if ((gender == "male") && (barReps >= 6 || barSeconds <= 15)) { //teste masculino
+        return true
+    }
+    if ((gender == "female") && (barReps >= 5 || barSeconds <= 12)) { //Teste feminino
         return true
     }
 }
@@ -20,8 +24,10 @@ function absTest(abs) {
 }
 // teste corrida
 function runTest(gender, runDistance, runTime) {
-    if (((gender == "male") && ((runDistance >= 3000 && runTime <= 720) || (runDistance >= 5000 && runTime <= 1200))) || 
-    (gender == "female") && ((runDistance >= 4000 && runTime <= 900) || (runDistance >= 6000 && runTime <= 1320))) {
+    if ((gender == "male") && ((runDistance >= 3000 && runTime <= 720) || (runDistance >= 5000 && runTime <= 1200))) {  //teste masculino
+        return true
+    }
+    if ((gender == "female") && ((runDistance >= 4000 && runTime <= 900) || (runDistance >= 6000 && runTime <= 1320))) { //teste feminino
         return true
     }
 }
@@ -37,13 +43,11 @@ function showMessage(message) {
 }
 
 function areCandidateResultsValid(gender, height, barReps, barSeconds, abs, runDistance, runTime, swimDistance, swimTime, diveTime) { 
-    if (
-        heightTest(gender, height) && 
+    if (heightTest(gender, height) && 
         barTest(gender, barReps, barSeconds) && 
         absTest(abs) && 
         runTest(gender, runDistance, runTime) && 
-        swimTest(swimDistance, swimTime, diveTime)
-        ) {
+        swimTest(swimDistance, swimTime, diveTime)) {
         return true
     }
     return false
@@ -64,10 +68,6 @@ const areCandidateValid = areCandidateResultsValid(
     process.argv[11], // Tempo total de mergulho em segundos
 );
 
-areCandidateResultsValid()
+
 // Chame aqui a função que mostra o resultado no console
-if (areCandidateResultsValid()) {
-    showMessage("true")
-} else {
-    showMessage("false")
-}
+showMessage(areCandidateValid.toString())
